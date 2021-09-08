@@ -15,7 +15,13 @@ export const TaskForm = () => {
 
     setText("");
   };
-  
+  const toggleChecked = ({ _id, isChecked }) => {
+    TasksCollection.update(_id, {
+      $set: {
+        isChecked: !isChecked
+      }
+    })
+  };
   return (
     <form className="task-form" onSubmit={handleSubmit}>
       <input
@@ -24,7 +30,7 @@ export const TaskForm = () => {
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
- 
+        
       <button type="submit">Add Task</button>
     </form>
   );
